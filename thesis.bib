@@ -1,0 +1,206 @@
+% This file was created with JabRef 2.7.1.
+% Encoding: UTF8
+
+@ARTICLE{hernandez2014exploiting,
+  author = {Nicolas Hernandez, Soufian Salim},
+  title = {Exploiting the human computational effort dedicated to message reply
+	formatting for training discursive email segmenters},
+  journal = {LAW VIII},
+  year = {2014},
+  pages = {110},
+  review = {Review #1 (EMNLP)
+	
+	
+	Comments
+	
+	
+	The authors present an approach to use inline replies in a mailing
+	list as a data source for the text segmentation of emails.
+	
+	
+	The paper is clearly written, the idea is quite nice, and the authors
+	get an improvement over a baseline of the TextTiling algorithm.
+	
+	
+	My two main concerns would be the following: one, how portable would
+	the approach be to more general domains than the Ubuntu mailing list;
+	two, judging from the example, simply segmenting the email into paragraphs
+	should yield quite a high baseline - at least much stronger than
+	the strawman "regular" baseline - while it should be reasonably easy
+	to implement.
+	
+	
+	Finally, if the authors don't provide data on other genres themselves,
+	it would be a service to the community to release the corpus or the
+	segment induction tool.
+	
+	
+	Review #2 (EMNLP)
+	
+	
+	Comments
+	
+	
+	The authors of this paper attempt to automatically segment emails
+	in a naturally occurring corpus (the Ubuntu-users mailing list).
+	In particular, they’ve defined a segmentation task to manually predict
+	the boundaries of sentences that will be quoted by followup emails
+	from other users. Their results show that they can do this with reasonable
+	accuracy.
+	
+	
+	I would argue that this is not a research paper; overwhelmingly, the
+	description of their work boils down to piecing together off-the-shelf
+	tools, identifying ways that those tools aren’t compatible with their
+	segmentation task, and jury-rigging ways to make them work in their
+	domain. This is definitely a complex task and I don’t doubt the effort
+	of the authors or their results, but I don’t think there’s much here
+	that’s reusable by others in the field.
+	
+	
+	Both the linguistic and machine learning aspects of this work are
+	not well-connected to prior theory or understanding of the problem
+	domain. Nothing the authors are doing is at all related to the extensive
+	work on dialog acts; this is an email segmentation task. Similarly,
+	their work does use a real-world dataset but did not leverage any
+	intentional crowdsourcing resources, nor were users solicited to
+	manually perform a computationally difficult task, making the references
+	to Von Ahn-style “human computation” literature (and later to “Wisdom
+	of the Crowds”) feel out-of-place and poorly framed. I would not
+	identify this work as being part of either of those bodies of work.
+	
+	
+	There are several details left out of the machine learning experiments
+	– the CRF classifier is described as off-the-shelf, but details about
+	the classification algorithm, the distributions of labels in the
+	dataset, and the reasoning behind various feature sets is missing.
+	The ad hoc addition of dozens of features suggested by prior work
+	should at the very least be better motivated, or those works should
+	be evaluated for relevance. Feature selection based on frequency
+	seems like a very poor choice, and is demonstrated as such when their
+	full classifier merely selects their original bigrams. Plenty of
+	feature selection approaches, as simple as information gain or as
+	complex as LASSO or other group selection, could have been tested
+	and would certainly have performed better.
+	
+	
+	Stylistically, the authors belabor simple points while glossing over
+	important details. Repeated references to RFCs that feel irrelevant,
+	oblique references to corpora that weren’t used, and a generally
+	inappropriate selection of what literature to cite makes me very
+	nervous about this paper. Perhaps most crucially, this task just
+	isn’t about dialogue acts and the prediction of reply segments within
+	an email should be suspect from the beginning, unless there’s a very
+	specific problem that the authors are trying to solve, in which case
+	there is not much for the audience to gain.
+	
+	
+	As is, the “kitchen sink” approach again feels more like engineering
+	a solution to a problem, rather than learning something generalizable.
+	I’m glad that it works for the problem the authors are working on;
+	I doubt that readers will learn much.
+	
+	
+	Review #3 (EMNLP)
+	
+	
+	This paper presents a discussion of email segmentation into some sort
+	of functional units. The authors cleverly propose to use the segmentation
+	performed by email users and users of other forms of written electronic
+	communication when they respond to email messages. The assumption
+	that these readily available segmentations can be used for training
+	is plausible and interesting.
+	
+	
+	The main problem with the paper is that there is no independent test
+	set, so that it is unclear what is being learned: is there any relation
+	between the segmentation performed by email users when they respond
+	and that performed by annotators when they want to give a linguistically
+	meaningful account of a dialog? The situation is compounded by the
+	fact that the authors further restrict their data set (length restrictions,
+	only responses to initial posts). The authors acknowledge this flaw
+	in the conclusion. It is not that hard to address: annotation manuals
+	exist for annotating segmentations, dialog acts, and linkings in
+	written dialog. The authors could have performed this work and done
+	an evaluation on the obtained set.
+	
+	
+	Another problem is that the performance is not that much better than
+	text tiling, a well-known technique.
+	
+	
+	Some specific comments:
+	
+	
+	PAGE 1:
+	
+	
+	"because it requires the building of training data which is a very
+	substan- tial and time-consuming task": Well, there is domain adaptation,
+	and perhaps many features are domain-independent.
+	
+	
+	"rhetor- ically": Or "pragmatically"? Define your terms!
+	
+	
+	PAGE 4:
+	
+	
+	"n-gram features": Why not use TF-IDF?
+	
+	
+	PAGE 5:
+	
+	
+	"For example, from the sentence "Have you tried to update your browser?",
+	we can gen- erate the following features :": I don't understand in
+	what sense these features are based on "information structure"? That
+	seems like an awfully fancy term for a simple idea.
+	
+	
+	PAGE 6:
+	
+	
+	"In addition, we choose to consider only replies to thread starters.":
+	This is troubling.
+	
+	
+	"After filtering, the dataset is left with 6,821 messages out of 33,915
+	(20%).": That's very heavy filtering.
+	
+	
+	PAGE 7:
+	
+	
+	"A standing for n-grams, B for information struc- ture, C for TextTiling
+	and D for miscellaneous features": This is a terrible convention.
+	Try and make the reader's task easy, not hard!
+	
+	
+	"collaborative approaches for acquiring annotated corpora": I'm not
+	sure this is relevant. This comparison could be skipped.
+	
+	
+	PAGE 9:
+	
+	
+	"The first one will consists in comparing the automatic segmen- tation
+	with those performed by human annotators. This task remains tedious
+	since it will then be necessary to define an annotation protocol,
+	write guidelines and build other resources.": This crucial. Yes,
+	science can be tedious. See for example Hu at al 2009.
+	
+	
+	@inproceedings{Hu:2009:CIS:1708376.1708429, author = {Hu, Jun and
+	Passonneau, Rebecca J. and Rambow, Owen}, title = {Contrasting the
+	Interaction Structure of an Email and a Telephone Corpus: A Machine
+	Learning Approach to Annotation of Dialogue Function Units}, booktitle
+	= {Proceedings of the SIGDIAL 2009 Conference: The 10th Annual Meeting
+	of the Special Interest Group on Discourse and Dialogue}, series
+	= {SIGDIAL '09}, year = {2009}, isbn = {978-1-932432-64-0}, location
+	= {London, United Kingdom}, pages = {357--366}, numpages = {10},
+	url = {http://dl.acm.org/citation.cfm?id=1708376.1708429}, acmid
+	= {1708429}, publisher = {Association for Computational Linguistics},
+	address = {Stroudsburg, PA, USA}, }}
+}
+

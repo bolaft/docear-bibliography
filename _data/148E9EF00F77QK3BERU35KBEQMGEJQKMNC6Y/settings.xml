@@ -1,0 +1,9 @@
+<project name="thesis" ID="148E9EF00F77QK3BERU35KBEQMGEJQKMNC6Y" version="docear 1.0">
+	<folder type="library" name="Library">
+		<link type="literature_annotations" name="Literature &amp; Annotations" path="project://148E9EF00F77QK3BERU35KBEQMGEJQKMNC6Y/maps/literature_and_annotations.mm"/>
+	</folder>
+	<folder type="literature_repository" name="Literature repository" system="true">
+		<folder type="repository_path" name="repository" path="project://148E9EF00F77QK3BERU35KBEQMGEJQKMNC6Y/repository/"/>
+	</folder>
+	<link type="references" name="References" path="project://148E9EF00F77QK3BERU35KBEQMGEJQKMNC6Y/thesis.bib" system="true"/>
+</project>
